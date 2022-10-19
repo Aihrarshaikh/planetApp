@@ -46,29 +46,21 @@ fun HomeScreen(
             Image(
                 modifier = Modifier
                     .height(wid.dp/2).shadow(elevation = 30.dp, shape = RectangleShape)
-                    .fillMaxWidth().padding(bottom = 30.dp),
-                painter = painterResource(id = R.drawable.space2),
+                    .fillMaxWidth().padding(bottom = 24.dp),
+                painter = painterResource(id = R.drawable.spce),
                 contentDescription = "",
                 contentScale = ContentScale.FillHeight,
             )
         }
         Text(
-            text = "Welcome to the space program.",
+            text = "Welcome to the space program. Let's Explore our universe together",
             style = TextStyle(
                 fontSize = 28.sp,
                 fontFamily = Satoshi,
                 fontWeight = FontWeight.Black,
                 color = Color(0xFF454C6A),
             ),
-        )
-        Text(
-            text = "We will help you in your exploration of space.....",
-            style = TextStyle(
-                fontSize = 28.sp,
-                fontFamily = Satoshi,
-                fontWeight = FontWeight.Black,
-                color = Color(0xFF454C6A),
-            ),
+            modifier = Modifier.padding(horizontal = 10.dp)
         )
         Button(
             onClick = {
@@ -77,8 +69,8 @@ fun HomeScreen(
             shape = RoundedCornerShape(24),
             colors = buttonColors(backgroundColor = Color(0xFF161B22)),
             modifier = Modifier
-                .fillMaxWidth(0.85f)
-                .height(120.dp).padding(top=50.dp)
+                .fillMaxWidth()
+                .height(120.dp).padding(top=24.dp, start = 10.dp, end = 10.dp)
         ){
             Text(
                 text = "Explore our galaxy",
@@ -97,8 +89,8 @@ fun HomeScreen(
             shape = RoundedCornerShape(24),
             colors = buttonColors(backgroundColor = Color(0xFF161B22)),
             modifier = Modifier
-                .fillMaxWidth(0.85f)
-                .height(120.dp).padding(top=50.dp)
+                .fillMaxWidth()
+                .height(120.dp).padding(top=24.dp, start = 10.dp, end = 10.dp)
         ){
             Text(
                 text = "Explore other galaxies....",

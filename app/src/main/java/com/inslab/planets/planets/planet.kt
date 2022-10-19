@@ -13,8 +13,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawWithCache
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.BlendMode
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
@@ -30,7 +34,7 @@ fun PLanet(painter: Painter, name: String, position: String, tagline: String, de
 LazyColumn( Modifier
     .fillMaxHeight()
     .width(wid.dp)
-    .background(color = Color(0xFF0D1117))
+    .background(color = Color(0xFF1A1A1A))
     .padding(horizontal = 10.dp, vertical = 10.dp),
     content = {
         item {
@@ -44,16 +48,16 @@ LazyColumn( Modifier
                         fontSize = wid.sp / 4,
                         fontFamily = Satoshi,
                         fontWeight = FontWeight.Black,
-                        color = Color(0xFFEEEDF0),
+                        color = Color(0xFF7C7C7C),
                     )
                 )
                 Image(
                     painter = painter,
                     contentDescription = name,
-                    contentScale = ContentScale.FillBounds,
+                    contentScale = ContentScale.FillHeight,
                     modifier = Modifier
-                        .height(wid.dp / 2)
-                        .fillMaxWidth().clip(CircleShape).background(color = Color(0xFF0D1117))
+                        .fillMaxWidth()
+                        .height(wid.dp/2)
                 )
             }
             Text(
@@ -62,8 +66,15 @@ LazyColumn( Modifier
                     fontSize = 64.sp,
                     fontFamily = Satoshi,
                     fontWeight = FontWeight.Black,
-                    color = Color(0xFF454C6A),
                 ),
+                modifier = Modifier.graphicsLayer(alpha = 0.99f)
+                    .drawWithCache {
+                        val brush = Brush.horizontalGradient(listOf(Color(0xFF0061ff), Color(0xFF60efff)))
+                        onDrawWithContent {
+                            drawContent()
+                            drawRect(brush, blendMode = BlendMode.SrcAtop)
+                        }
+                    }
             )
             Text(
                 text = tagline,
@@ -72,7 +83,6 @@ LazyColumn( Modifier
                     fontFamily = Satoshi,
                     fontWeight = FontWeight.SemiBold,
                     color = Color(0xFFEEEDF0),
-
                     )
             )
             Text(
